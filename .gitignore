@@ -1,1 +1,3 @@
 ## Add as needed
+# ignore folder node_modules
+node_modules/
