@@ -1,3 +1,5 @@
 ## Add as needed
 # ignore folder node_modules
 node_modules/
+# store unneeded files from skeleton
+not_needed/
