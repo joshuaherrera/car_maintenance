@@ -6,8 +6,13 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var index = require('./routes/index');
+var about = require('./routes/about');
+var contact = require('./routes/contact')
+var login = require('./routes/login')
+var signup = require('./routes/signup')
+var cars = require('./routes/cars')
+
 
 var app = express();
 app.set('port', 2999)
@@ -24,8 +29,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', index);
+app.use('/about', about);
+app.use('/contact', contact);
+app.use('/login', login);
+app.use('/signup', signup);
+app.use('/cars', cars);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
