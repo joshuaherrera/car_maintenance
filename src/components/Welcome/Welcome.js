@@ -1,12 +1,13 @@
 import React from 'react';
 
 import Aux from '../../hoc/Aux/Aux';
+import Attention from '../Attention/Attention';
 
 const welcome = (props) => {
 	//return some jsx to render
 	return (
 		<Aux>
-			<div>Attention Grabber</div>
+			<Attention />
 			<div>More info</div>
 		</Aux>
 	);
