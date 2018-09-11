@@ -10,7 +10,9 @@ const welcome = (props) => {
 		<Aux>
 			<Attention />
 			{/*<div>More info</div>*/}
-			<MoreInfo />
+			<MoreInfo info="This is the first bit of info" img="this would be an img link"/>
+			<MoreInfo info="This is the second bit of info" img="this would be an img link"/>
+			<MoreInfo info="This is the third bit of info" img="this would be an img link"/>
 
 		</Aux>
 	);
