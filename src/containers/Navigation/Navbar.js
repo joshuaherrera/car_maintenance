@@ -3,9 +3,24 @@ import { Link } from 'react-router-dom';
 import { Button, Menu, Container } from 'semantic-ui-react'
 
 class Navigation extends Component {
-  state = { activeItem: 'home' }
+  state = {
+    activeItem: null,
+  }
+
+  componentDidMount() {
+    //check if active is cached, and use as state
+    if (sessionStorage.getItem('ActiveItem')) {
+      // statement
+      this.setState({activeItem: sessionStorage.getItem('ActiveItem')});
+    }
+    else {
+      this.setState({activeItem: 'home'});
+    }
+  }
 
   handleItemClick = (e, { name }) => {
+    sessionStorage.setItem('ActiveItem', name);
+    //console.log(sessionStorage.getItem('ActiveItem'))
     this.setState({ activeItem: name });
   }
 
@@ -21,10 +36,12 @@ class Navigation extends Component {
           as={Link}
           to='/about'
           name='about'
-          active={activeItem === 'about'}
+          active={activeItem === 'about' /*item is active if the name matches*/}
           onClick={this.handleItemClick}
         />
         <Menu.Item
+          as={Link}
+          to='/vehicles'
           name='vehicles'
           active={activeItem === 'vehicles'}
           onClick={this.handleItemClick}
@@ -34,8 +51,26 @@ class Navigation extends Component {
         <Menu.Menu position='right'>
 
           <Menu.Item>
-            <Button as={Link} to='/sign-up' inverted attached='left' basic color='blue'>Sign Up</Button>
-            <Button as={Link} to='/login' inverted attached='right' basic color='red'>Log In</Button>
+            <Button name='signup'
+                    active={activeItem === 'signup'}
+                    onClick={this.handleItemClick}
+                    as={Link}
+                    to='/sign-up'
+                    inverted
+                    attached='left'
+                    basic color='blue'>
+                    Sign Up
+            </Button>
+            <Button as={Link}
+                    to='/login'
+                    inverted
+                    attached='right'
+                    basic color='red'
+                    name='login'
+                    active={activeItem==='login'}
+                    onClick={this.handleItemClick}>
+                    Log In
+            </Button>
           </Menu.Item>
         </Menu.Menu>
         </Container>
