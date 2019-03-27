@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
 import classes from './Attention.css';
 //import Button from '../UI/Button/Button';
@@ -18,7 +18,7 @@ const attention = (props) => {
 			</Header>
 			<div className={classes.Content}>[AttnGrabber] Information about the site, maybe a small logo, used to 
 			persuade user to sign up</div>
-			<Button basic color="blue" floated="right">
+			<Button as={Link} to='sign-up' basic color="blue" floated="right">
 				Sign Up
 			</Button>
 		{/*</Segment>*/}
