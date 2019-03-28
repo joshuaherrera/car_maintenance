@@ -24,6 +24,12 @@ class Navigation extends Component {
     this.setState({ activeItem: name });
   }
 
+  /*NOTE: Want to have conditional navigation based on login status.
+          I'm thinking I could have a flag passed in somehow (as state?)
+          that would allow me to conditionally render either logged in navigation or
+          nonlogged in. As of 3/27/2019 this file contains a preliminary navbar based
+          on a user not being logged in.
+  */
   render() {
     const { activeItem } = this.state
 
