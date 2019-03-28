@@ -11,13 +11,15 @@ const attention = (props) => {
 	return (
 		<Aux>
 		<div className={classes.All}>
-		<Container>
+		<Container >
 		{/*<Segment basic padded>*/}
-			<Header as='h2'>
-				Some Header
+			<Header textAlign='center' as='h2'>
+				Vehicle Maintenance Tracker
 			</Header>
-			<div className={classes.Content}>[AttnGrabber] Information about the site, maybe a small logo, used to 
-			persuade user to sign up</div>
+			<Divider hidden />
+			<div className={classes.Content}>This site was designed to make it easy for you to track your car's maintenance history. Simply log in to your account, add
+			a vehicle, and begin keeping track. If you don't have an account, click the sign up button below!
+			</div>
 			<Button as={Link} to='sign-up' basic color="blue" floated="right">
 				Sign Up
 			</Button>

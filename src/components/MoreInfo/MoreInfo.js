@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Segment, Container } from 'semantic-ui-react'
+import { Grid, Segment, Container, Image } from 'semantic-ui-react'
 import classes from './MoreInfo.css';
 const moreInfo = (props) =>  (
   <Container text>
@@ -10,7 +10,7 @@ const moreInfo = (props) =>  (
       </Grid.Column>
       <Grid.Column>
         {/*<Image src='/images/wireframe/paragraph.png' />*/}
-        <Segment basic textAlign='left'><div className={classes.Content}>{props.img}</div></Segment>
+        <Segment basic textAlign='left'><div className={classes.Content}><Image src={props.img} /></div></Segment>
       </Grid.Column>
     </Grid.Row>
    </Grid>

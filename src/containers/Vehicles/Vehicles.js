@@ -6,7 +6,7 @@ class Vehicles extends Component {
 	state = {
 		vehicles: [], /*intent is to be an array of objects*/
 	}
-	/*TODO: Use index # as logic to display as left or right segment*/
+	/*TODO: Use index # as logic to display as left or right segment (even or odd)*/
 
 	render () {
 		return (
