@@ -3,3 +3,5 @@
 node_modules/
 # store unneeded files from skeleton
 not_needed/
+# yarn
+yarn.lock

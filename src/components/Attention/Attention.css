@@ -1,0 +1,17 @@
+.Content {
+  width: 100%;
+  /*begin old center css*/
+/*  display: flex;
+  justify-content: center;*/
+  /*end old center css*/
+  margin: auto;
+  height: 250px;
+  /*text-align: center;*/
+  font-weight: normal;
+  font-size: 1.2rem;
+  /*padding-top: 10px;*/
+}
+
+.All {
+  margin-bottom: 50px;
+}
