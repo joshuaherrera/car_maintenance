@@ -6,6 +6,7 @@ import About from './components/About/About';
 import Signup from './containers/Signup/Signup';
 import Login from './containers/Login/Login';
 import Vehicles from './containers/Vehicles/Vehicles';
+import { withFirebase } from './components/Firebase';
 
 /*TODO: 
 	-finish styling MoreInfo, About
@@ -31,13 +32,39 @@ import Vehicles from './containers/Vehicles/Vehicles';
 
 	04/04/19:
 	-setup routes constant
+    
+    04/08/19:
+    -setup auth pages and nonauth
+        -adjust homepage when user logs in
+        -may need to remove about and contact, seems unneccessary for
+        a logged in user.
 
 */
 
 class App extends Component {
+  constructor(props) {
+  	super(props);
+
+  	this.state = {
+  		authUser: null,
+  	};
+  }
+
+  componentDidMount() {
+    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+        authUser
+        ? this.setState({ authUser })
+        : this.setState({ authUser: null });
+    });
+  }
+
+  componentWillUnmount() {
+    this.listener();
+  }
+
   render() {
     return (
-	    	<Layout>
+	    	<Layout authUser={this.state.authUser}>
 	    		<Switch>
 	    			<Route path="/about" component={About} />
 	    			<Route path="/sign-up" component={Signup} />
@@ -50,4 +77,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withFirebase(App);

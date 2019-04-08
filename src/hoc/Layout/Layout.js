@@ -8,7 +8,7 @@ import { Container } from 'semantic-ui-react';
 const layout = (props) => (
 	<Aux>
 		{/*<div>Toolbar, Sidedrawer, Backdrop (maybe), Footer</div>*/}
-		<Navigation />
+		<Navigation authUser={props.authUser}/>
 		<Container>
 		<main className={classes.Content}>
 			{props.children}
