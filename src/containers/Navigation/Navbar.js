@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Menu, Container } from 'semantic-ui-react'
+import LogoutButton from '../../containers/Logout/Logout'
 
 class Navigation extends Component {
   state = {
@@ -63,20 +64,19 @@ class Navigation extends Component {
                     as={Link}
                     to='/sign-up'
                     inverted
-                    attached='left'
                     basic color='blue'>
                     Sign Up
             </Button>
             <Button as={Link}
                     to='/login'
                     inverted
-                    attached='right'
                     basic color='red'
                     name='login'
                     active={activeItem==='login'}
                     onClick={this.handleItemClick}>
                     Log In
             </Button>
+            <LogoutButton />
           </Menu.Item>
         </Menu.Menu>
         </Container>
