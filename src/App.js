@@ -7,6 +7,7 @@ import Signup from './containers/Signup/Signup';
 import Login from './containers/Login/Login';
 import Vehicles from './containers/Vehicles/Vehicles';
 import Reset from './containers/Reset/Reset';
+import Account from './containers/Account/Account';
 import { withAuth } from './components/Session';
 
 /*TODO: 
@@ -52,6 +53,7 @@ class App extends Component {
 	    			<Route path="/login" component={Login} />
 	    			<Route path="/vehicles" component={Vehicles} />
 	    			<Route path="/reset" component={Reset} />
+	    			<Route path="/account" component={Account} />
 	    			<Route path="/" exact component={Welcome} />
 	    		</Switch>
 	    	</Layout>

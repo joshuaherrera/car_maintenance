@@ -114,6 +114,13 @@ class Navigation extends Component {
           active={activeItem === 'vehicles'}
           onClick={this.handleItemClick}
         />
+        <Menu.Item
+          as={Link}
+          to='/account'
+          name='account'
+          active={activeItem === 'account'}
+          onClick={this.handleItemClick}
+        />
 
 
         <Menu.Menu position='right'>
