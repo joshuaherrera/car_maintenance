@@ -25,31 +25,7 @@ class Vehicles extends Component {
 			<Container text>
 				<Header as='h2' textAlign='center'>Your Vehicles</Header>
 			{/*loop through this section*/}
-			{this.state.vehicles.map((vehicle, idx) => (
-/*				//currently just adds group to each segment
-				idx % 2 === 0 ? 
-				<Segment.Group horizontal>
-				<Segment key={idx} textAlign='center' padded floated='left'>
-					<p>Make: {vehicle['Make']}</p>
-					<p>Model: {vehicle['Model']}</p>
-					<p>Year: {vehicle['Year']}</p>
-					<p>
-						<Button floated='right'>Select</Button>
-					</p>
-				</Segment>
-				</Segment.Group>
-				:
-				<Segment.Group horizontal>
-				<Segment key={idx} textAlign='center' padded floated='left'>
-					<p>Make: {vehicle['Make']}</p>
-					<p>Model: {vehicle['Model']}</p>
-					<p>Year: {vehicle['Year']}</p>
-					<p>
-						<Button floated='right'>Select</Button>
-					</p>
-				</Segment>
-				</Segment.Group>*/
-				
+			{this.state.vehicles.map((vehicle, idx) => (			
 				<Segment key={idx} compact textAlign='center' padded floated='left'>
 					<p>Make: {vehicle['Make']}</p>
 					<p>Model: {vehicle['Model']}</p>

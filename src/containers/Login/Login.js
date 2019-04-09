@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Container, Segment, Form, Divider } from 'semantic-ui-react';
+import { Form, Divider, Header } from 'semantic-ui-react';
 import { compose } from 'recompose';
 import { withFirebase } from '../../components/Firebase';
 import Aux from '../../hoc/Aux/Aux';
@@ -52,18 +52,19 @@ class LoginBase extends Component {
     const isInvalid = pass === '' || email === '';
     return (
       <Aux>
-      <Form>
-        <Form.Field>
-          <Form.Input onChange={this.handleEmailChange}fluid name='email' type='text' label='Email' placeholder='Email Address' />
-          <Form.Input onChange={this.handlePassChange}fluid name='pass' label='Password' placeholder='Password' type='password' />
-        </Form.Field>
-        <Form.Button disabled={isInvalid} type='submit' onClick={this.onSubmit}>Submit</Form.Button>
-        {error && <p>{error.message} </p>}
-      </Form>
-      <Divider hidden />
-      <p>
-        <Link to='/'>Forgot password?</Link>
-      </p>
+      <Header as='h2' textAlign='center'>Log In</Header>
+        <Form>
+          <Form.Field>
+            <Form.Input onChange={this.handleEmailChange}fluid name='email' type='text' label='Email' placeholder='Email Address' />
+            <Form.Input onChange={this.handlePassChange}fluid name='pass' label='Password' placeholder='Password' type='password' />
+          </Form.Field>
+          <Form.Button disabled={isInvalid} type='submit' onClick={this.onSubmit}>Submit</Form.Button>
+          {error && <p>{error.message} </p>}
+        </Form>
+        <Divider hidden />
+        <p>
+          <Link to='/reset'>Forgot password?</Link>
+        </p>
       </Aux>
     );
   }
