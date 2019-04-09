@@ -6,35 +6,38 @@ import About from './components/About/About';
 import Signup from './containers/Signup/Signup';
 import Login from './containers/Login/Login';
 import Vehicles from './containers/Vehicles/Vehicles';
+import { withAuth } from './components/Session';
 
 /*TODO: 
 	-finish styling MoreInfo, About
 	-add a footer
-	-find out how to make a seperate menu render when at mobile
+	-find out how to make a seperate menu render when at mobile [STRETCH]
 	-resolution[LOOK INTO DEVICE VISIBILITY FOR GRID]
 	-make other pages 
-		~~sign up
-		~~login
-		~~cars
-		~~about [WIP]
-	~add routing [pretty much done]
-	***after this accomplishment ^ need to watch more vids for authentication***
-	-add authentication
-	-conditionally render cars page.
+		~~logged in home page
+		~~navbar when logged in
+		~~individual vehicle page
+		~~page to add maintenance events
 
-	-setup backend to store maintenance data using a database
-	(look into using firebase for the free tier)
 	-sync backend with frontend to display cars and work done
 
 	-setup email reminders for work done ie oil change every 3 months. (look into services)
 
 	09/10/2018: 
-	-dynamically render vehicles page
 	-vehicle page
 	-develop add maintenance page
 	-develop edit maintenance page
 	-setup functionality of signup/login/vehicles... prototype by console.logging
 		-initial console logging done for signup page
+
+	04/04/19:
+	-setup routes constant
+    
+    04/08/19:
+    -setup auth pages and nonauth
+        -adjust homepage when user logs in
+        -may need to remove about and contact, seems unneccessary for
+        a logged in user.
 
 */
 
@@ -54,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuth(App);

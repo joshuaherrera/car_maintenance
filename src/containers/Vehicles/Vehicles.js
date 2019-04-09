@@ -3,8 +3,19 @@ import {Segment, Header, Container, Button} from 'semantic-ui-react';
 import Aux from '../../hoc/Aux/Aux';
 
 class Vehicles extends Component {
+	/*hard coding objects for testing... intent would be to make a call to db so set vehicles array.
+	re:arrays : https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html
+	*/
 	state = {
-		vehicles: [], /*intent is to be an array of objects*/
+		vehicles: [{'Make': 'Jeep', 'Model': 'Grand Cherokee', 'Year': '1995'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'}], /*intent is to be an array of objects*/
 	}
 	/*TODO: Use index # as logic to display as left or right segment (even or odd)*/
 
@@ -13,20 +24,42 @@ class Vehicles extends Component {
 			<Aux>
 			<Container text>
 				<Header as='h2' textAlign='center'>Your Vehicles</Header>
-				<Segment textAlign='center' padded floated='left'>
-					<p>Make: Jeep</p>
-					<p>Model: Grand Cherokee</p>
-					<p>Year: 1995</p>
+			{/*loop through this section*/}
+			{this.state.vehicles.map((vehicle, idx) => (
+/*				//currently just adds group to each segment
+				idx % 2 === 0 ? 
+				<Segment.Group horizontal>
+				<Segment key={idx} textAlign='center' padded floated='left'>
+					<p>Make: {vehicle['Make']}</p>
+					<p>Model: {vehicle['Model']}</p>
+					<p>Year: {vehicle['Year']}</p>
 					<p>
 						<Button floated='right'>Select</Button>
 					</p>
 				</Segment>
-				<Segment textAlign='center' padded floated='right'>
-					<p>Make: Toyota</p>
-					<p>Model: Corolla</p>
-					<p>Year: 1994</p>
-					<Button floated='right'>Select</Button>
+				</Segment.Group>
+				:
+				<Segment.Group horizontal>
+				<Segment key={idx} textAlign='center' padded floated='left'>
+					<p>Make: {vehicle['Make']}</p>
+					<p>Model: {vehicle['Model']}</p>
+					<p>Year: {vehicle['Year']}</p>
+					<p>
+						<Button floated='right'>Select</Button>
+					</p>
 				</Segment>
+				</Segment.Group>*/
+				
+				<Segment key={idx} compact textAlign='center' padded floated='left'>
+					<p>Make: {vehicle['Make']}</p>
+					<p>Model: {vehicle['Model']}</p>
+					<p>Year: {vehicle['Year']}</p>
+					<p>
+						<Button floated='right'>Select</Button>
+					</p>
+				</Segment>
+				)
+			)}
 			</Container>
 			</Aux>
 

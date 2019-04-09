@@ -4,6 +4,7 @@ import Aux from '../Aux/Aux';
 import classes from './Layout.css';
 import Navigation from '../../containers/Navigation/Navbar';
 import { Container } from 'semantic-ui-react';
+//import { AuthUserContext } from '../../components/Session'; rm props from Navi
 
 const layout = (props) => (
 	<Aux>
