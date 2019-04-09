@@ -6,7 +6,7 @@ import About from './components/About/About';
 import Signup from './containers/Signup/Signup';
 import Login from './containers/Login/Login';
 import Vehicles from './containers/Vehicles/Vehicles';
-import { withFirebase } from './components/Firebase';
+import { withAuth } from './components/Session';
 
 /*TODO: 
 	-finish styling MoreInfo, About
@@ -42,29 +42,9 @@ import { withFirebase } from './components/Firebase';
 */
 
 class App extends Component {
-  constructor(props) {
-  	super(props);
-
-  	this.state = {
-  		authUser: null,
-  	};
-  }
-
-  componentDidMount() {
-    this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-        ? this.setState({ authUser })
-        : this.setState({ authUser: null });
-    });
-  }
-
-  componentWillUnmount() {
-    this.listener();
-  }
-
   render() {
     return (
-	    	<Layout authUser={this.state.authUser}>
+	    	<Layout>
 	    		<Switch>
 	    			<Route path="/about" component={About} />
 	    			<Route path="/sign-up" component={Signup} />
@@ -77,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default withFirebase(App);
+export default withAuth(App);

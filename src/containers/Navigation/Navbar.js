@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Menu, Container } from 'semantic-ui-react'
-import LogoutButton from '../../containers/Logout/Logout'
+import { Button, Menu, Container } from 'semantic-ui-react';
+import LogoutButton from '../../containers/Logout/Logout';
+import { AuthUserContext } from '../../components/Session';
 
 class Navigation extends Component {
   state = {
@@ -126,7 +127,12 @@ class Navigation extends Component {
     );
 
     const Nav = () => (
-      <div>{this.props.authUser ? <NavAuth /> : <NavNonAuth />}</div>
+      <div>
+        <AuthUserContext.Consumer>
+          {authUser =>
+            authUser ? <NavAuth /> : <NavNonAuth />}
+        </AuthUserContext.Consumer>
+      </div>
     );
 
     return (
