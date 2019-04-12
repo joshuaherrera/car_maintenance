@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Grid, Header, Container, Button, Divider, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
-import { AuthUserContext, withAuthorization } from '../../components/Session';
+import { withAuthorization } from '../../components/Session';
 
 class Vehicles extends Component {
 	/*hard coding objects for testing... intent would be to make a call to db so set vehicles array.
@@ -20,10 +20,6 @@ class Vehicles extends Component {
 				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
 				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'}], /*intent is to be an array of objects*/
 	}
-	/*TODO: Use index # as logic to display as left or right segment (even or odd)*/
-	/*may want to have 4 grid.columns and loop through array, using idx
-	  to decide where the vehicle goes. may use a for loop
-	*/
 
 	render () {
 		return (
@@ -60,7 +56,12 @@ class Vehicles extends Component {
 			)}
 			</Grid>
 			<Divider hidden />
-			<Button floated='right'>Add Vehicle</Button>
+			<Button
+				floated='right'
+				as={ Link }
+				to='/add-vehicle'
+				>Add Vehicle
+			</Button>
 			</Container>
 			</Aux>
 

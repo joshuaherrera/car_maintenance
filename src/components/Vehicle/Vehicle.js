@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Grid, Header, Container, Button, Divider, Segment} from 'semantic-ui-react';
+import {Grid, Header, Container, Button} from 'semantic-ui-react';
 import Aux from '../../hoc/Aux/Aux';
 import { withAuthorization } from '../../components/Session';
 
@@ -16,7 +16,7 @@ const Vehicle = (props) => {
 						Upcoming Maintenance : oil change[dynamically render]
 					</Grid.Column>
 					<Grid.Column>
-						Date Performed : 04/20/2019 [dynamically render]
+						Anticipated Date : 04/20/2019 [dynamically render]
 					</Grid.Column>					
 				</Grid.Row>
 				<Grid.Row>
@@ -26,10 +26,24 @@ const Vehicle = (props) => {
 				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column>
-						<Button>Edit Vehicle</Button>
+						<Button
+							as={ Link }
+							to={{
+								pathname: 'edit-vehicle',
+								state: {
+									make: props.location.state.make,
+									model: props.location.state.model,
+									year: props.location.state.year,
+								}
+							}}
+							>
+							Edit Vehicle</Button>
 					</Grid.Column>
 					<Grid.Column>
-						<Button>Add Maintenance Record</Button>
+						<Button
+							as={ Link }
+							to='/add-maintenance'
+							>Add Maintenance Record</Button>
 					</Grid.Column>					
 				</Grid.Row>
 				
