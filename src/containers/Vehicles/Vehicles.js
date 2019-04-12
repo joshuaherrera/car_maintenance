@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Grid, Header, Container, Button, Divider, Segment} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
-import { withAuthorization } from '../../components/Session';
+import { AuthUserContext, withAuthorization } from '../../components/Session';
 
 class Vehicles extends Component {
 	/*hard coding objects for testing... intent would be to make a call to db so set vehicles array.
@@ -30,7 +31,7 @@ class Vehicles extends Component {
 			<Container text>
 				<Header as='h2' textAlign='center'>Your Vehicles</Header>
 			{/*loop through this section*/}
-			<Grid columns={4}>
+			<Grid stackable columns={4}>
 			{this.state.vehicles.map((vehicle, idx) => (		
 				<Grid.Column key={idx}>
 					<Segment textAlign='center' padded floated='left'>
@@ -38,7 +39,20 @@ class Vehicles extends Component {
 					<p>Model: {vehicle['Model']}</p>
 					<p>Year: {vehicle['Year']}</p>
 					<p>
-						<Button floated='right'>Select</Button>
+						<Button 
+							as={Link}
+							to={{
+								pathname: '/vehicle',
+								state: {
+								make: vehicle['Make'],
+								model: vehicle['Model'],
+								year: vehicle['Year'],
+								}
+							}}
+							floated='right'
+
+							>Select
+						</Button>
 					</p>
 					</Segment>
 				</Grid.Column>
