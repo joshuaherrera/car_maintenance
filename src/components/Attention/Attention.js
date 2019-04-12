@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
 import classes from './Attention.css';
 //import Button from '../UI/Button/Button';
-import { Container, Header, Button, Divider } from 'semantic-ui-react';
+import { Container, Header, Button, Divider, Segment } from 'semantic-ui-react';
 //used as attention grabber for first page
 //probably need to use css to style appropriately
 //look into UI frameworks like semantic ui react

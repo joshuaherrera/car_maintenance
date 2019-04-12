@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link, withRouter } from 'react-router-dom';
-import {Container, Segment, Form} from 'semantic-ui-react';
+import { Form, Header } from 'semantic-ui-react';
 import { compose } from 'recompose';
-import { withFirebase } from '../../components/Firebase'
+import { withFirebase } from '../../components/Firebase';
+import Aux from '../../hoc/Aux/Aux';
 
 //return this page to have firebase props passed
 const SignupPage = () => (
@@ -89,6 +90,8 @@ class SignupBase extends Component {
             username === '';
 
     return (
+      <Aux>
+      <Header as='h2' textAlign='center'>Sign Up</Header>
       <Form>
         <Form.Field>
           <Form.Input onChange={this.handleUsernameChange} fluid name='username' label='Username' placeholder='Username' type='text'/>
@@ -100,6 +103,7 @@ class SignupBase extends Component {
         <Form.Button type='submit' onClick={this.onSubmit} disabled={isInvalid}>Submit</Form.Button>
         {error && <p>{error.message}</p>}
       </Form>
+      </Aux>
     )
   }
 }

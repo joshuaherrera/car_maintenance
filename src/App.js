@@ -4,8 +4,11 @@ import Layout from './hoc/Layout/Layout';
 import Welcome from './components/Welcome/Welcome';
 import About from './components/About/About';
 import Signup from './containers/Signup/Signup';
+import Vehicle from './components/Vehicle/Vehicle';
 import Login from './containers/Login/Login';
 import Vehicles from './containers/Vehicles/Vehicles';
+import Reset from './containers/Reset/Reset';
+import Account from './containers/Account/Account';
 import { withAuth } from './components/Session';
 
 /*TODO: 
@@ -50,6 +53,9 @@ class App extends Component {
 	    			<Route path="/sign-up" component={Signup} />
 	    			<Route path="/login" component={Login} />
 	    			<Route path="/vehicles" component={Vehicles} />
+	    			<Route path="/reset" component={Reset} />
+	    			<Route path="/account" component={Account} />
+	    			<Route path="/vehicle" component={Vehicle} />
 	    			<Route path="/" exact component={Welcome} />
 	    		</Switch>
 	    	</Layout>

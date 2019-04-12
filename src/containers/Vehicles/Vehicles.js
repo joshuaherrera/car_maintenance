@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Segment, Header, Container, Button} from 'semantic-ui-react';
+import {Grid, Header, Container, Button, Divider, Segment} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
+import { AuthUserContext, withAuthorization } from '../../components/Session';
 
 class Vehicles extends Component {
 	/*hard coding objects for testing... intent would be to make a call to db so set vehicles array.
@@ -15,9 +17,13 @@ class Vehicles extends Component {
 				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
 				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
 				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
+				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'},
 				   {'Make': 'Toyota', 'Model': 'Corolla', 'Year': '1994'}], /*intent is to be an array of objects*/
 	}
 	/*TODO: Use index # as logic to display as left or right segment (even or odd)*/
+	/*may want to have 4 grid.columns and loop through array, using idx
+	  to decide where the vehicle goes. may use a for loop
+	*/
 
 	render () {
 		return (
@@ -25,41 +31,36 @@ class Vehicles extends Component {
 			<Container text>
 				<Header as='h2' textAlign='center'>Your Vehicles</Header>
 			{/*loop through this section*/}
-			{this.state.vehicles.map((vehicle, idx) => (
-/*				//currently just adds group to each segment
-				idx % 2 === 0 ? 
-				<Segment.Group horizontal>
-				<Segment key={idx} textAlign='center' padded floated='left'>
+			<Grid stackable columns={4}>
+			{this.state.vehicles.map((vehicle, idx) => (		
+				<Grid.Column key={idx}>
+					<Segment textAlign='center' padded floated='left'>
 					<p>Make: {vehicle['Make']}</p>
 					<p>Model: {vehicle['Model']}</p>
 					<p>Year: {vehicle['Year']}</p>
 					<p>
-						<Button floated='right'>Select</Button>
+						<Button 
+							as={Link}
+							to={{
+								pathname: '/vehicle',
+								state: {
+								make: vehicle['Make'],
+								model: vehicle['Model'],
+								year: vehicle['Year'],
+								}
+							}}
+							floated='right'
+
+							>Select
+						</Button>
 					</p>
-				</Segment>
-				</Segment.Group>
-				:
-				<Segment.Group horizontal>
-				<Segment key={idx} textAlign='center' padded floated='left'>
-					<p>Make: {vehicle['Make']}</p>
-					<p>Model: {vehicle['Model']}</p>
-					<p>Year: {vehicle['Year']}</p>
-					<p>
-						<Button floated='right'>Select</Button>
-					</p>
-				</Segment>
-				</Segment.Group>*/
-				
-				<Segment key={idx} compact textAlign='center' padded floated='left'>
-					<p>Make: {vehicle['Make']}</p>
-					<p>Model: {vehicle['Model']}</p>
-					<p>Year: {vehicle['Year']}</p>
-					<p>
-						<Button floated='right'>Select</Button>
-					</p>
-				</Segment>
+					</Segment>
+				</Grid.Column>
 				)
 			)}
+			</Grid>
+			<Divider hidden />
+			<Button floated='right'>Add Vehicle</Button>
 			</Container>
 			</Aux>
 
@@ -68,4 +69,6 @@ class Vehicles extends Component {
 
 }
 
-export default Vehicles;
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(Vehicles);
