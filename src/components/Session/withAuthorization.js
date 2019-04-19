@@ -13,12 +13,13 @@ const withAuthorization = condition => Component => {
 		//if a user is not authorized, the user is redirected to the
 		//login page
 		componentDidMount() {
-			this.listener = this.props.firebase.auth.onAuthStateChanged(
+			this.listener = this.props.firebase.onAuthUserListener(
 				authUser => {
-					if (!condition(authUser)) {
+					if(!condition(authUser)) {
 						this.props.history.push('/login');
 					}
-				}
+				},
+				() => this.props.history.push('/login'),
 			);
 		}
 

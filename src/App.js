@@ -12,6 +12,7 @@ import Vehicles from './containers/Vehicles/Vehicles';
 import AddMaintenance from './containers/AddMaintenance/AddMaintenance';
 import Reset from './containers/Reset/Reset';
 import Account from './containers/Account/Account';
+import Admin from './containers/Admin/Admin';
 import { withAuth } from './components/Session';
 
 /*TODO: 
@@ -43,6 +44,7 @@ class App extends Component {
 	    			<Route path="/vehicles" component={Vehicles} />
 	    			<Route path="/reset" component={Reset} />
 	    			<Route path="/account" component={Account} />
+	    			<Route path="/admin" component={Admin} />
 	    			<Route path="/vehicle" component={Vehicle} />
 	    			<Route path="/edit-vehicle" component={EditVehicle} />
 	    			<Route path="/add-vehicle" component={AddVehicle} />
