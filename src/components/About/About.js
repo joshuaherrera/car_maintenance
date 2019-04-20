@@ -27,7 +27,7 @@ const about = (props) => {
 					in 2015 with a degree in Human Development and went back to school for Computer Science with Oregon State University, graduating in 2019.
 					</p>
 					<p>One day, he decided to utilize both of his interests and develop this site, mainly for personal use, as well as a way to learn first hand
-					the Reach framework.
+					the React framework.
 					</p>
 					</div>
 				</Segment>

@@ -6,18 +6,24 @@ const withAuth = Component => {
 	class withAuth extends React.Component {
 		constructor(props) {
 		    super(props);
-
+		    //change local to session for security; look into firebase
 		    this.state = {
-		    	authUser: null,
+		    	authUser: JSON.parse(localStorage.getItem('authUser')),
 		    };
 		}
 
 	    componentDidMount() {
-	      this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-	          authUser
-	          ? this.setState({ authUser })
-	          : this.setState({ authUser: null });
-	      });
+	      //pass in next and fallback
+	      this.listener = this.props.firebase.onAuthUserListener(
+	      	authUser => {
+	      		localStorage.setItem('authUser', JSON.stringify(authUser));
+	      		this.setState({ authUser });
+	      	},
+	      	() => {
+	      		localStorage.removeItem('authUser');
+	      		this.setState( { authUser: null });
+	      	},
+	      );
 	    }
 
 	    componentWillUnmount() {

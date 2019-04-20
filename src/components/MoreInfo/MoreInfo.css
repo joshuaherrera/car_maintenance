@@ -1,7 +1,9 @@
 .Content {
-	margin: 1em;
+  margin: 1em;
+  font-weight: normal;
+  font-size: 1.2rem;
+  line-height: 2em;
 }
-
 .Img {
 
 }

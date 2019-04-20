@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {Link, withRouter } from 'react-router-dom';
-import { Form, Header } from 'semantic-ui-react';
+import { Form, Header, Checkbox } from 'semantic-ui-react';
 import { compose } from 'recompose';
 import { withFirebase } from '../../components/Firebase';
 import Aux from '../../hoc/Aux/Aux';
+import * as ROLES from '../../constants/roles';
 
 //return this page to have firebase props passed
 const SignupPage = () => (
@@ -15,7 +16,7 @@ const INIT_STATE = {
     email: '',
     pass1: '', /*Don't store !! look into best practice*/
     pass2: '',
-    termsBool: null,
+    isAdmin: false,
     error: null,
 }
 
@@ -53,11 +54,34 @@ class SignupBase extends Component {
     //console.log(this.state);
   }
 
+    onChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked });
+  };
+
   onSubmit = event => {
-    const {username, email, pass1 } = this.state;
+    const {username, email, pass1, isAdmin } = this.state;
+
+    const roles = {};
+
+    if(isAdmin) {
+      roles[ROLES.ADMIN] = ROLES.ADMIN;
+    }
     //would need to pass in firebase api
     this.props.firebase
     .doCreateUserWithEmailAndPassword(email, pass1)
+    .then(authUser => {
+      //create user in firebase realtime db
+      return this.props.firebase
+        .user(authUser.user.uid) //store into rtdb with uid and set the values
+        .set({
+          username,
+          email,
+          roles,
+        });
+    })
+    .then(() => {
+      return this.props.firebase.doSendEmailVerification();
+    })
     .then(authUser => { //seems to check if req returns correctly, by checking if authuser is available
       this.setState({...INIT_STATE});
       this.props.history.push('/'); //go to home page after signup. nees history
@@ -69,7 +93,6 @@ class SignupBase extends Component {
     event.preventDefault();
   };
 
-
   render() {
     const { value } = this.state;
 
@@ -79,7 +102,7 @@ class SignupBase extends Component {
       email,
       pass1,
       pass2,
-      termsBool,
+      isAdmin,
       error,
     } = this.state;
 
@@ -99,7 +122,10 @@ class SignupBase extends Component {
           <Form.Input onChange={this.handlePass1Change}fluid name='pass1' label='Password' placeholder='Password' type='password' />
           <Form.Input onChange={this.handlePass2Change}fluid name='pass2' label='Confirm Password' placeholder='Confirm Password' type='password' />
         </Form.Field>
-        {/*<Form.Checkbox onChange={this.handleTermsChange} name='terms' label='I agree to the Terms and Conditions' />*/}
+        <label>
+           <input type='checkbox' onChange={this.onChangeCheckbox} name='isAdmin' checked={isAdmin} />
+           Admin
+        </label>
         <Form.Button type='submit' onClick={this.onSubmit} disabled={isInvalid}>Submit</Form.Button>
         {error && <p>{error.message}</p>}
       </Form>

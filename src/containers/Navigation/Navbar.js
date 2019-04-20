@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Menu, Container } from 'semantic-ui-react';
 import LogoutButton from '../../containers/Logout/Logout';
 import { AuthUserContext } from '../../components/Session';
+import * as ROLES from '../../constants/roles';
 
 class Navigation extends Component {
   state = {
@@ -82,7 +83,7 @@ class Navigation extends Component {
       </Menu>
     );
 
-    const NavAuth = () => (
+    const NavAuth = ({ authUser }) => (
       <Menu stackable inverted borderless size='large'>
       <Container>
         <Menu.Item header>Maintenance Tracker</Menu.Item>
@@ -121,6 +122,15 @@ class Navigation extends Component {
           active={activeItem === 'account'}
           onClick={this.handleItemClick}
         />
+        {!!authUser.roles[ROLES.ADMIN] && (
+        <Menu.Item
+          as={Link}
+          to='/admin'
+          name='admin'
+          active={activeItem === 'admin'}
+          onClick={this.handleItemClick}
+        />
+        )}
 
 
         <Menu.Menu position='right'>
@@ -137,7 +147,7 @@ class Navigation extends Component {
       <div>
         <AuthUserContext.Consumer>
           {authUser =>
-            authUser ? <NavAuth /> : <NavNonAuth />}
+            authUser ? <NavAuth authUser={authUser} /> : <NavNonAuth />}
         </AuthUserContext.Consumer>
       </div>
     );
