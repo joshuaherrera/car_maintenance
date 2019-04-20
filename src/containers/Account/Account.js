@@ -1,7 +1,11 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
+import { compose } from 'recompose';
 import PassChangeForm from '../../containers/PassChange/PassChange';
-import { AuthUserContext, withAuthorization } from '../../components/Session';
+import { AuthUserContext,
+		 withAuthorization,
+		 withEmailVerification,
+		} from '../../components/Session';
 
 const AccountPage = () => (
 	<AuthUserContext.Consumer>
@@ -17,4 +21,7 @@ const AccountPage = () => (
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(AccountPage);
+export default compose(
+	withEmailVerification,
+	withAuthorization(condition),
+)(AccountPage);

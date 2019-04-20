@@ -3,7 +3,7 @@ import { withFirebase } from '../../components/Firebase';
 import { Header, Container, List } from 'semantic-ui-react';
 import Aux from '../../hoc/Aux/Aux';
 import { compose } from 'recompose';
-import { withAuthorization } from '../../components/Session';
+import { withAuthorization, withEmailVerification } from '../../components/Session';
 import * as ROLES from '../../constants/roles';
 
 class AdminPage extends Component {
@@ -72,4 +72,8 @@ const UserList = ( { users }) => (
 const condition = authUser => 
 	authUser && !!authUser.roles[ROLES.ADMIN];
 
-export default compose(withAuthorization(condition), withFirebase,)(AdminPage);
+export default compose(
+	withEmailVerification,
+	withAuthorization(condition),
+	withFirebase,
+	)(AdminPage);

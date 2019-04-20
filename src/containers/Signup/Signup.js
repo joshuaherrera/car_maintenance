@@ -79,6 +79,9 @@ class SignupBase extends Component {
           roles,
         });
     })
+    .then(() => {
+      return this.props.firebase.doSendEmailVerification();
+    })
     .then(authUser => { //seems to check if req returns correctly, by checking if authuser is available
       this.setState({...INIT_STATE});
       this.props.history.push('/'); //go to home page after signup. nees history

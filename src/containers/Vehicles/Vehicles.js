@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Grid, Header, Container, Button, Divider, Segment} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Aux from '../../hoc/Aux/Aux';
-import { withAuthorization } from '../../components/Session';
+import { compose } from 'recompose';
+import { withAuthorization, withEmailVerification } from '../../components/Session';
 
 class Vehicles extends Component {
 	/*hard coding objects for testing... intent would be to make a call to db so set vehicles array.
@@ -72,4 +73,7 @@ class Vehicles extends Component {
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(Vehicles);
+export default compose(
+	withEmailVerification,
+	withAuthorization(condition),
+	)(Vehicles);
