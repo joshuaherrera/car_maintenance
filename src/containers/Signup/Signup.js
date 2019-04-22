@@ -123,7 +123,7 @@ class SignupBase extends Component {
           <Form.Input onChange={this.handlePass2Change}fluid name='pass2' label='Confirm Password' placeholder='Confirm Password' type='password' />
         </Form.Field>
         <label>
-           <input type='checkbox' onChange={this.onChangeCheckbox} name='isAdmin' checked={isAdmin} />
+           <input type='checkbox' disabled onChange={this.onChangeCheckbox} name='isAdmin' checked={isAdmin} />
            Admin
         </label>
         <Form.Button type='submit' onClick={this.onSubmit} disabled={isInvalid}>Submit</Form.Button>
