@@ -7,6 +7,7 @@ import Signup from './containers/Signup/Signup';
 import Vehicle from './components/Vehicle/Vehicle';
 import EditVehicle from './components/EditVehicle/EditVehicle';
 import AddVehicle from './components/AddVehicle/AddVehicle';
+import Contact from './components/Contact/Contact';
 import Login from './containers/Login/Login';
 import Vehicles from './containers/Vehicles/Vehicles';
 import AddMaintenance from './containers/AddMaintenance/AddMaintenance';
@@ -46,6 +47,7 @@ class App extends Component {
 	    			<Route path="/account" component={Account} />
 	    			<Route path="/admin" component={Admin} />
 	    			<Route path="/vehicle" component={Vehicle} />
+	    			<Route path="/contact" component={Contact} />
 	    			<Route path="/edit-vehicle" component={EditVehicle} />
 	    			<Route path="/add-vehicle" component={AddVehicle} />
 	    			<Route path="/add-maintenance" component={AddMaintenance} />
