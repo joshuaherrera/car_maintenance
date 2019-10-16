@@ -1,11 +1,21 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "Server for car maintenance project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Joshua Herrera",
-  "license": "ISC"
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Server for car maintenance project",
+    "main": "index.js",
+    "engines": {
+        "node": "10.8.1",
+        "npm": "6.10.1"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "Joshua Herrera",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.5.1"
+    }
 }
