@@ -8,7 +8,7 @@ const contact = (props) => {
 		<Aux>
 			<Container>
 				<Segment>
-					<Header dividing textAlign='center' as='h2'>Contact Me</Header>
+					<Header dividing textAlign='center' as='h2'>Contact The Author</Header>
 					<div className={classes.Content}>
 						Reach me by:
 						<p className={classes.SubContent}>
