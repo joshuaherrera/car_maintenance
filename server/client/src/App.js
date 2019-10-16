@@ -15,6 +15,7 @@ import Reset from './containers/Reset/Reset';
 import Account from './containers/Account/Account';
 import Admin from './containers/Admin/Admin';
 import { withAuth } from './components/Session';
+import * as ROUTES from './constants/routes';
 
 /*TODO: 
 	-add a footer
@@ -25,13 +26,8 @@ import { withAuth } from './components/Session';
 	-setup email reminders for work done ie oil change every 3 months. (look into services)
 		-start with three basic maintenance types: oil change, brake change, tire rotation
 	-develop edit maintenance page
-	04/04/19:
-	-setup routes constant
-    04/08/19:
-    -setup auth pages and nonauth
-        -adjust homepage when user logs in
-        -may need to remove about and contact, seems unneccessary for
-        a logged in user.
+	NOTE: sendgrid can be used to send emails
+	page 150
 */
 
 class App extends Component {
@@ -39,19 +35,19 @@ class App extends Component {
     return (
 	    	<Layout>
 	    		<Switch>
-	    			<Route path="/about" component={About} />
-	    			<Route path="/sign-up" component={Signup} />
-	    			<Route path="/login" component={Login} />
-	    			<Route path="/vehicles" component={Vehicles} />
-	    			<Route path="/reset" component={Reset} />
-	    			<Route path="/account" component={Account} />
-	    			<Route path="/admin" component={Admin} />
-	    			<Route path="/vehicle" component={Vehicle} />
-	    			<Route path="/contact" component={Contact} />
-	    			<Route path="/edit-vehicle" component={EditVehicle} />
-	    			<Route path="/add-vehicle" component={AddVehicle} />
-	    			<Route path="/add-maintenance" component={AddMaintenance} />
-	    			<Route path="/" exact component={Welcome} />
+	    			<Route path={ROUTES.ABOUT} component={About} />
+	    			<Route path={ROUTES.SIGN_UP} component={Signup} />
+	    			<Route path={ROUTES.LOGIN} component={Login} />
+	    			<Route path={ROUTES.VEHICLES} component={Vehicles} />
+	    			<Route path={ROUTES.RESET} component={Reset} />
+	    			<Route path={ROUTES.ACCOUNT} component={Account} />
+	    			<Route path={ROUTES.ADMIN} component={Admin} />
+	    			<Route path={ROUTES.VEHICLE} component={Vehicle} />
+	    			<Route path={ROUTES.CONTACT} component={Contact} />
+	    			<Route path={ROUTES.EDIT_VEHICLE} component={EditVehicle} />
+	    			<Route path={ROUTES.ADD_VEHICLE} component={AddVehicle} />
+	    			<Route path={ROUTES.ADD_MAINT} component={AddMaintenance} />
+	    			<Route path={ROUTES.LANDING} exact component={Welcome} />
 	    		</Switch>
 	    	</Layout>
     );

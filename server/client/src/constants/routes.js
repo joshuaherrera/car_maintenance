@@ -1,0 +1,14 @@
+export const LANDING = '/';
+export const ABOUT = '/about';
+export const SIGN_UP = '/sign-up';
+export const LOGIN = '/login';
+export const VEHICLES = '/vehicles';
+export const RESET = '/reset';
+export const ACCOUNT = '/account';
+export const VEHICLE = '/vehicle';
+export const CONTACT = '/contact';
+export const EDIT_VEHICLE = '/edit-vehicle';
+export const ADD_VEHICLE = '/add-vehicle';
+export const ADD_MAINT = '/add-maintenance';
+export const ADMIN = '/admin';
+export const ADMIN_DETAILS = '/admin/:id';
