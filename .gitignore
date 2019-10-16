@@ -7,3 +7,5 @@ not_needed/
 yarn.lock
 # api keys, unhide when prod ready
 src/components/Firebase/Firebase.js
+# eslint settings
+.eslintrc.js
