@@ -4,7 +4,7 @@
     "description": "Server for car maintenance project",
     "main": "index.js",
     "engines": {
-        "node": "10.8.1",
+        "node": "10.16.3",
         "npm": "6.10.1"
     },
     "scripts": {
