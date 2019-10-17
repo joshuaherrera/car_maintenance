@@ -9,3 +9,5 @@ yarn.lock
 src/components/Firebase/Firebase.js
 # eslint settings
 .eslintrc.js
+# keys
+keys.js
