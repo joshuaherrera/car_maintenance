@@ -4,6 +4,8 @@ const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
+app.use(express.json()); // no need for body-parser
+
 authRoutes(app);
 
 const PORT = process.env.PORT || 5000;
