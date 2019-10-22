@@ -1,42 +1,26 @@
-module.exports = (sequelize, Sequelize) => {
-    // class User extends Sequelize.Model {}
-
-    // User.init(
-    //     {
-    //         username: {
-    //             type: Sequelize.STRING
-    //             // allowNull: false // need to resolve with oauth
-    //         },
-    //         email: {
-    //             type: Sequelize.STRING
-    //         },
-    //         passHash: {
-    //             type: Sequelize.STRING
-    //         },
-    //         oauth: {
-    //             type: Sequelize.STRING
-    //         }
-    //     },
-    //     {
-    //         sequelize,
-    //         modelName: 'user'
-    //     }
-    // );
-
-    // return User;
-    return sequelize.define('user', {
+const user = (sequelize, DataTypes) => {
+    const User = sequelize.define('user', {
         username: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING,
+            unique: true
             // allowNull: false // need to resolve with oauth
         },
         email: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING,
+            unique: true
         },
         passHash: {
-            type: Sequelize.STRING
+            type: DataTypes.STRING
         },
-        oauth: {
-            type: Sequelize.STRING
+        oauthProvider: {
+            type: DataTypes.STRING
+        },
+        oauthToken: {
+            type: DataTypes.STRING,
+            unique: true
         }
     });
+    return User;
 };
+
+export default user;

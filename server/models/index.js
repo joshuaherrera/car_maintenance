@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize');
-const keys = require('../config/keys');
-const UserModel = require('./user');
+import Sequelize from 'sequelize';
+import keys from '../config/keys';
+// const UserModel = require('./user');
 
 const sequelize = new Sequelize(keys.postgresURI, {
     dialectOptions: {
@@ -16,8 +16,17 @@ sequelize
         console.log('error', err);
     });
 
-const User = UserModel(sequelize, Sequelize);
+const models = {
+    User: sequelize.import('./user')
+};
 
-sequelize.sync().then(() => console.log('DB + tables created'));
+// do associations, user needs associate fcn
+Object.keys(models).forEach((key) => {
+    if ('associate' in models[key]) {
+        models[key].associate(models);
+    }
+});
 
-module.export = { User };
+export { sequelize };
+
+export default models;

@@ -1,6 +1,6 @@
-const passport = require('passport');
+import passport from 'passport';
 
-module.exports = (app) => {
+const authRoutes = (app) => {
     app.get(
         '/auth/google',
         passport.authenticate('google', {
@@ -20,3 +20,5 @@ module.exports = (app) => {
 
     app.get('/auth/facebook/callback', passport.authenticate('facebook'));
 };
+
+export default authRoutes;
