@@ -25,22 +25,6 @@ app.get('/testdb', (req, res) => {
         });
 });
 
-const eraseDBOnSync = false;
 const PORT = process.env.PORT || 5000;
-sequelize.sync({ force: eraseDBOnSync }).then(async () => {
-    if (eraseDBOnSync) {
-        console.log('Erasing old db and seeding with test data.');
-        createUsers();
-    }
-    app.listen(PORT);
-});
 
-const createUsers = async () => {
-    await models.User.create({
-        username: 'seededuser1'
-    });
-    await models.User.create({
-        username: 'seeded2',
-        email: 'sanec@live.com'
-    });
-};
+app.listen(PORT);
