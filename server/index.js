@@ -13,7 +13,7 @@ authRoutes(app);
 
 app.get('/testdb', (req, res) => {
     models.User.create({
-        username: 'userFromGET'
+        username: 'userFromGET2'
     })
         .then(() => {
             console.log('created new user');

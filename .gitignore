@@ -12,7 +12,7 @@ src/components/Firebase/Firebase.js
 # keys
 keys.js
 # sequelize-cli file
-config.json
+database.js
 # sequelize-cli test files
 test.js
 20191022213104-create-test.js
