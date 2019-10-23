@@ -1,20 +1,14 @@
 import Sequelize from 'sequelize';
 import keys from '../config/keys';
-// const UserModel = require('./user');
 
-const sequelize = new Sequelize(keys.postgresURI, {
-    dialectOptions: {
-        ssl: true //needed for heroku
-    }
+// const sequelize = new Sequelize(keys.postgresURI, {
+//     dialectOptions: {
+//         ssl: true //needed for heroku
+//     }
+// });
+const sequelize = new Sequelize(keys.devDB, keys.devDBUser, keys.devDBPass, {
+    dialect: 'postgres'
 });
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('success');
-    })
-    .catch((err) => {
-        console.log('error', err);
-    });
 
 const models = {
     User: sequelize.import('./user')

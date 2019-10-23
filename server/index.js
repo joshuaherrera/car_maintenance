@@ -14,13 +14,18 @@ authRoutes(app);
 app.get('/testdb', (req, res) => {
     models.User.create({
         username: 'userFromGET'
-    }).then(() => {
-        console.log('created new user');
-    });
-    res.send({ user: 'made' });
+    })
+        .then(() => {
+            console.log('created new user');
+            res.send({ user: 'made' });
+        })
+        .catch((err) => {
+            console.error('Error making user: ', err);
+            res.send({ error: err });
+        });
 });
 
-const eraseDBOnSync = true;
+const eraseDBOnSync = false;
 const PORT = process.env.PORT || 5000;
 sequelize.sync({ force: eraseDBOnSync }).then(async () => {
     if (eraseDBOnSync) {
