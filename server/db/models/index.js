@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize';
-import keys from '../config/keys';
+import keys from '../../config/keys';
 
 // const sequelize = new Sequelize(keys.postgresURI, {
 //     dialectOptions: {

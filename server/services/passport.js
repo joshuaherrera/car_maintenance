@@ -2,6 +2,9 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook');
 import keys from '../config/keys';
+import models from '../db/models';
+
+const User = models.User;
 
 passport.use(
     new GoogleStrategy(
@@ -11,9 +14,19 @@ passport.use(
             callbackURL: '/auth/google/callback'
         },
         (accessToken, refreshToken, profile, done) => {
-            console.log(accessToken);
-            console.log('refresh token', refreshToken);
-            console.log(profile);
+            User.findOne({ where: { googleId: profile.id } }).then(
+                (existingUser) => {
+                    if (existingUser) {
+                        //user acct is present
+                        console.log('user record already exists');
+                    } else {
+                        User.create({
+                            googleId: profile.id,
+                            oauthProvider: profile.provider
+                        });
+                    }
+                }
+            );
         }
     )
 ); //define which strategy to use for auth
@@ -27,9 +40,21 @@ passport.use(
             profileFields: ['id', 'displayName', 'name', 'emails']
         },
         (accessToken, refreshToken, profile, done) => {
-            console.log(accessToken);
-            console.log('refresh token', refreshToken);
-            console.log(profile);
+            User.findOne({ where: { facebookId: profile.id } }).then(
+                (existingUser) => {
+                    if (existingUser) {
+                        console.log('user record already exists:');
+                        done(null, existingUser);
+                    } else {
+                        User.create({
+                            facebookId: profile.id,
+                            oauthProvider: profile.provider
+                        }).then((user) => {
+                            done(null, user);
+                        });
+                    }
+                }
+            );
         }
     )
 );

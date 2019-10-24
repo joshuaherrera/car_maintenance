@@ -18,6 +18,14 @@ const user = (sequelize, DataTypes) => {
         oauthToken: {
             type: DataTypes.STRING,
             unique: true
+        },
+        googleId: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        facebookId: {
+            type: DataTypes.STRING,
+            unique: true
         }
     });
     return User;
