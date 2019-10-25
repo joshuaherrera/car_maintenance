@@ -1,10 +1,21 @@
-const passport = require('passport');
+import passport from 'passport';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook');
 import keys from '../config/keys';
 import models from '../db/models';
 
 const User = models.User;
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    //search using user, then return that user
+    User.findByPk(id).then((user) => {
+        done(null, user);
+    });
+});
 
 passport.use(
     new GoogleStrategy(
@@ -19,10 +30,13 @@ passport.use(
                     if (existingUser) {
                         //user acct is present
                         console.log('user record already exists');
+                        done(null, existingUser);
                     } else {
                         User.create({
                             googleId: profile.id,
                             oauthProvider: profile.provider
+                        }).then((user) => {
+                            done(null, user);
                         });
                     }
                 }
